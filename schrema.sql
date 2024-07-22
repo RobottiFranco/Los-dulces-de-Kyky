@@ -17,16 +17,15 @@ CREATE TABLE ProductTypeMapping (
 );
 
 CREATE TABLE AppUser (
-    user_id SERIAL PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
-    id_number VARCHAR(50) NOT NULL UNIQUE,
+    id_number VARCHAR(50) NOT NULL PRIMARY KEY,
     phone_number VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Cart (
     cart_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES AppUser(user_id)
+    id_number VARCHAR(50) REFERENCES AppUser(id_number)
 );
 
 CREATE TABLE CartItem (
@@ -37,10 +36,9 @@ CREATE TABLE CartItem (
     price NUMERIC(10, 2) NOT NULL
 );
 
-
 CREATE TABLE PurchaseOrder (
     order_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES AppUser(user_id),
+    user_id VARCHAR(50) REFERENCES AppUser(id_number),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     total_amount NUMERIC(10, 2) NOT NULL
 );
@@ -75,8 +73,8 @@ INSERT INTO AppUser (first_name, last_name, id_number, phone_number) VALUES
 ('Jane', 'Smith', '0987654321', '555-5678');
 
 INSERT INTO Cart (user_id) VALUES
-(1),  -- Cart for John Doe
-(2);  -- Cart for Jane Smith
+('1234567890'),  -- Cart for John Doe
+('0987654321');  -- Cart for Jane Smith
 
 INSERT INTO CartItem (cart_id, product_id, quantity, price) VALUES
 (1, 1, 1, 25.00),  -- John Doe's cart contains 1 Chocolate Cake
@@ -84,12 +82,11 @@ INSERT INTO CartItem (cart_id, product_id, quantity, price) VALUES
 (2, 3, 1, 30.00);  -- Jane Smith's cart contains 1 Cheesecake
 
 INSERT INTO PurchaseOrder (user_id, created_at, total_amount) VALUES
-(1, '2024-07-19 12:00:00', 32.00),  -- Order by John Doe
-(2, '2024-07-19 12:30:00', 30.00);  -- Order by Jane Smith
+('1234567890', '2024-07-19 12:00:00', 32.00),  -- Order by John Doe
+('0987654321', '2024-07-19 12:30:00', 30.00);  -- Order by Jane Smith
 
 INSERT INTO OrderItem (order_id, product_id, quantity, price) VALUES
 (1, 1, 1, 25.00),  -- John Doe's order contains 1 Chocolate Cake
 (1, 2, 2, 3.50),   -- John Doe's order contains 2 Vanilla Cupcakes
 (2, 3, 1, 30.00);  -- Jane Smith's order contains 1 Cheesecake
-
 
