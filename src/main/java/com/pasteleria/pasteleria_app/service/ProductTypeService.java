@@ -10,4 +10,10 @@ public interface ProductTypeService {
 
     ProductType getProductTypeByID(long id);
 
+    void addProductType(ProductType productType);
+
+    void updateProductType(ProductType productType);
+
+    void deleteProductType(long id);
+
 }
