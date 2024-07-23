@@ -1,5 +1,5 @@
 package com.pasteleria.pasteleria_app.repository;
 
-public class UserRepository {
+public class AppUserRepository {
 
 }

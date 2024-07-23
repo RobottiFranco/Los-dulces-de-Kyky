@@ -1,5 +1,5 @@
 package com.pasteleria.pasteleria_app.service.impl;
 
-public class UserServiceImpl {
+public class AppUserServiceImpl {
 
 }

@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -16,7 +17,8 @@ public class PurchaseOrder {
     private long order_id;
 
     @ManyToOne
-    private String user_id;
+    @JoinColumn(name = "user_id", nullable = false)
+    private AppUser user_id;
 
     @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date created_at;
@@ -27,7 +29,7 @@ public class PurchaseOrder {
     public PurchaseOrder() {
     }
 
-    public PurchaseOrder(long order_id, String user_id, Date created_at, double total_amount) {
+    public PurchaseOrder(long order_id, AppUser user_id, Date created_at, double total_amount) {
         this.order_id = order_id;
         this.user_id = user_id;
         this.created_at = created_at;
@@ -42,11 +44,11 @@ public class PurchaseOrder {
         this.order_id = order_id;
     }
 
-    public String getUser_id() {
+    public AppUser getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(AppUser user_id) {
         this.user_id = user_id;
     }
 

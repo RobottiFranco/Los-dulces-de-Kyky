@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -15,10 +16,12 @@ public class OrderItem {
     private long order_item_id;
 
     @ManyToOne
-    private long order_id;
+    @JoinColumn(name = "order_id", nullable = false)
+    private PurchaseOrder order_id;
 
     @ManyToOne
-    private long product_id;
+    @JoinColumn(name = "id_number", nullable = false)
+    private Product product_id;
 
     @Column(nullable = false)
     private int quantity;
@@ -29,7 +32,7 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(long order_item_id, long order_id, long product_id, int quantity, double price) {
+    public OrderItem(long order_item_id, PurchaseOrder order_id, Product product_id, int quantity, double price) {
         this.order_item_id = order_item_id;
         this.order_id = order_id;
         this.product_id = product_id;
@@ -45,19 +48,19 @@ public class OrderItem {
         this.order_item_id = order_item_id;
     }
 
-    public long getOrder_id() {
+    public PurchaseOrder getOrder_id() {
         return order_id;
     }
 
-    public void setOrder_id(long order_id) {
+    public void setOrder_id(PurchaseOrder order_id) {
         this.order_id = order_id;
     }
 
-    public long getProduct_id() {
+    public Product getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(long product_id) {
+    public void setProduct_id(Product product_id) {
         this.product_id = product_id;
     }
 
