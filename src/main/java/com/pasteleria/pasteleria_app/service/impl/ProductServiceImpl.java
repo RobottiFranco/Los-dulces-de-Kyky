@@ -16,14 +16,14 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     public void addProduct(Product product) {
-        if (productRepository.existsById(product.getProduct_id())) {
+        if (productRepository.existsById(product.getProductId())) {
             throw new RuntimeException("Product with this ID already exists");
         }
         productRepository.save(product);
     }
 
     public void updateProduct(Product product) {
-        if (productRepository.existsById(product.getProduct_id())) {
+        if (productRepository.existsById(product.getProductId())) {
             productRepository.save(product);
         } else {
             throw new RuntimeException("Product not found");
@@ -46,9 +46,14 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
-/*     @Override
-    public List<Product> getProductByType(String name) {
-        return productRepository.getProductByType(name);
-    } */
+    @Override
+    public List<Product> getProductByTypeName(String productType) {
+        return productRepository.getProductByTypeName(productType);
+    }
+
+    @Override
+    public List<Product> getProductByTypeID(long productType) {
+        return productRepository.getProductByTypeID(productType);
+    }
 
 }

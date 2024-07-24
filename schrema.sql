@@ -90,3 +90,4 @@ INSERT INTO OrderItem (order_id, product_id, quantity, price) VALUES
 (1, 2, 2, 3.50),   -- John Doe's order contains 2 Vanilla Cupcakes
 (2, 3, 1, 30.00);  -- Jane Smith's order contains 1 Cheesecake
 
+select p.* from Product as p, product_type_mapping as ptm, product_type as pt where p.product_id = ptm.product_id and ptm.product_type_id = pt.product_type_id and pt.name = 'Cake';

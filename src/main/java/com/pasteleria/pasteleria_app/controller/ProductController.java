@@ -27,7 +27,7 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("getProduct/{id}")
     public ResponseEntity<Product> getProductByID(@PathVariable long id) {
         return ResponseEntity.ok(productService.getProductByID(id));
     }
@@ -50,13 +50,16 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    /*
-     * @GetMapping("/{productType}")
-     * public ResponseEntity<List<Product>> getProductByType(@PathVariable String
-     * productType) {
-     * List<Product> product = productService.getProductByType(productType);
-     * return ResponseEntity.ok(product);
-     * }
-     */
+    @GetMapping("/byName/{productType}")
+    public ResponseEntity<List<Product>> getProductByTypeName(@PathVariable String productType) {
+        List<Product> product = productService.getProductByTypeName(productType);
+        return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/byId/{productType}")
+    public ResponseEntity<List<Product>> getProductByTypeID(@PathVariable long productType) {
+        List<Product> product = productService.getProductByTypeID(productType);
+        return ResponseEntity.ok(product);
+    }
 
 }

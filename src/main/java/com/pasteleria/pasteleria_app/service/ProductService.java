@@ -16,5 +16,7 @@ public interface ProductService {
 
     public Product getProductByID(long id);
 
-/*     public List<Product> getProductByType(String name);
- */}
+    public List<Product> getProductByTypeName(String productType);
+
+    public List<Product> getProductByTypeID(long productType);
+}

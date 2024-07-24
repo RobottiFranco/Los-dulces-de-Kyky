@@ -11,7 +11,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long product_id;
+    private long productId;
 
     @Column(nullable = false, unique = true)
     private String name;
@@ -25,19 +25,19 @@ public class Product {
     public Product() {
     }
 
-    public Product(long product_id, String name, String description, double price) {
-        this.product_id = product_id;
+    public Product(long productId, String name, String description, double price) {
+        this.productId = productId;
         this.name = name;
         this.description = description;
         this.price = price;
     }
 
-    public long getProduct_id() {
-        return product_id;
+    public long getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(long product_id) {
-        this.product_id = product_id;
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 
     public String getName() {
@@ -63,4 +63,6 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    
 }

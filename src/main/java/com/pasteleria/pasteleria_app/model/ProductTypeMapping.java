@@ -11,35 +11,35 @@ public class ProductTypeMapping {
     @Id
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product product_id;
+    private Product product;
 
     @Id
     @ManyToOne
     @JoinColumn(name = "product_type_id")
-    private ProductType product_type_id;
+    private ProductType productType;
 
     public ProductTypeMapping() {
     }
 
-    public ProductTypeMapping(Product product_id, ProductType product_type_id) {
-        this.product_id = product_id;
-        this.product_type_id = product_type_id;
+    public ProductTypeMapping(Product product, ProductType productType) {
+        this.product = product;
+        this.productType = productType;
     }
 
-    public Product getProduct_id() {
-        return product_id;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProduct_id(Product product_id) {
-        this.product_id = product_id;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public ProductType getProduct_type_id() {
-        return product_type_id;
+    public ProductType getProductType() {
+        return productType;
     }
 
-    public void setProduct_type_id(ProductType product_type_id) {
-        this.product_type_id = product_type_id;
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
 
 }
