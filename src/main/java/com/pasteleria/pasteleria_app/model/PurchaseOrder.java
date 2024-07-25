@@ -7,64 +7,88 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class PurchaseOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long order_id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private AppUser user_id;
-
-    @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date created_at;
+    private long orderId;
 
     @Column(nullable = false)
-    private double total_amount;
+    private String userFirstName;
+
+    @Column(nullable = false)
+    private String userLastName;
+
+    @Column(nullable = false)
+    private String userPhoneNumber;
+
+    @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Date createdAt;
+
+    @Column(nullable = false)
+    private double totalAmount;
 
     public PurchaseOrder() {
     }
 
-    public PurchaseOrder(long order_id, AppUser user_id, Date created_at, double total_amount) {
-        this.order_id = order_id;
-        this.user_id = user_id;
-        this.created_at = created_at;
-        this.total_amount = total_amount;
+    public PurchaseOrder(long orderId, String userFirstName, String userLastName, String userIdNumber,
+            String userPhoneNumber,
+            Date createdAt, double totalAmount) {
+        this.orderId = orderId;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.userPhoneNumber = userPhoneNumber;
+        this.createdAt = createdAt;
+        this.totalAmount = totalAmount;
     }
 
-    public long getOrder_id() {
-        return order_id;
+    public long getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(long order_id) {
-        this.order_id = order_id;
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
     }
 
-    public AppUser getUser_id() {
-        return user_id;
+    public String getUserFirstName() {
+        return userFirstName;
     }
 
-    public void setUser_id(AppUser user_id) {
-        this.user_id = user_id;
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public String getUserLastName() {
+        return userLastName;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
     }
 
-    public double getTotal_amount() {
-        return total_amount;
+    public String getUserPhoneNumber() {
+        return userPhoneNumber;
     }
 
-    public void setTotal_amount(double total_amount) {
-        this.total_amount = total_amount;
+    public void setUserPhoneNumber(String userPhoneNumber) {
+        this.userPhoneNumber = userPhoneNumber;
     }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
 }

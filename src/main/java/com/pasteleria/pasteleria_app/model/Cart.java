@@ -1,44 +1,43 @@
 package com.pasteleria.pasteleria_app.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Cart {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cart_id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_number", nullable = false)
-    private AppUser id_number;
+    @Id
+    private String sessionId;
+
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartItem> items = new ArrayList<>();
 
     public Cart() {
     }
 
-    public Cart(long cart_id, AppUser id_number) {
-        this.cart_id = cart_id;
-        this.id_number = id_number;
+    public Cart(String sessionId) {
+        this.sessionId = sessionId;
     }
 
-    public long getCart_id() {
-        return cart_id;
+    public String getSessionId() {
+        return sessionId;
     }
 
-    public void setCart_id(long cart_id) {
-        this.cart_id = cart_id;
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
     }
 
-    public AppUser getId_number() {
-        return id_number;
+    public List<CartItem> getItems() {
+        return items;
     }
 
-    public void setId_number(AppUser id_number) {
-        this.id_number = id_number;
+    public void setItems(List<CartItem> items) {
+        this.items = items;
     }
 
 }

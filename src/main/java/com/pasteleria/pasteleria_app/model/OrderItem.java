@@ -13,15 +13,15 @@ public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long order_item_id;
+    private long orderItemId;
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
-    private PurchaseOrder order_id;
+    private PurchaseOrder orderId;
 
     @ManyToOne
-    @JoinColumn(name = "id_number", nullable = false)
-    private Product product_id;
+    @JoinColumn(name = "product_Id", nullable = false)
+    private Product productId;
 
     @Column(nullable = false)
     private int quantity;
@@ -32,36 +32,36 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(long order_item_id, PurchaseOrder order_id, Product product_id, int quantity, double price) {
-        this.order_item_id = order_item_id;
-        this.order_id = order_id;
-        this.product_id = product_id;
+    public OrderItem(long orderItemId, PurchaseOrder orderId, Product productId, int quantity, double price) {
+        this.orderItemId = orderItemId;
+        this.orderId = orderId;
+        this.productId = productId;
         this.quantity = quantity;
         this.price = price;
     }
 
-    public long getOrder_item_id() {
-        return order_item_id;
+    public long getOrderItemId() {
+        return orderItemId;
     }
 
-    public void setOrder_item_id(long order_item_id) {
-        this.order_item_id = order_item_id;
+    public void setOrderItemId(long orderItemId) {
+        this.orderItemId = orderItemId;
     }
 
-    public PurchaseOrder getOrder_id() {
-        return order_id;
+    public PurchaseOrder getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(PurchaseOrder order_id) {
-        this.order_id = order_id;
+    public void setOrderId(PurchaseOrder orderId) {
+        this.orderId = orderId;
     }
 
-    public Product getProduct_id() {
-        return product_id;
+    public Product getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(Product product_id) {
-        this.product_id = product_id;
+    public void setProductId(Product productId) {
+        this.productId = productId;
     }
 
     public int getQuantity() {
