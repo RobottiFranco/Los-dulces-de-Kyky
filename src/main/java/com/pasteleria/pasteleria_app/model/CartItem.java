@@ -1,51 +1,45 @@
 package com.pasteleria.pasteleria_app.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
+@IdClass(CartItemId.class)
 public class CartItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cartItemId;
-
     @ManyToOne
-    @JoinColumn(name = "session_Id", nullable = false)
-    private Cart cart;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(nullable = false)
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "session_id")
+    private Cart cart;
+
     private int quantity;
 
-    @Column(nullable = false)
-    private double price;
-
+    // Constructor por defecto
     public CartItem() {
     }
 
-    public CartItem(long cartItemId, Cart cart, Product product, int quantity, double price) {
-        this.cartItemId = cartItemId;
-        this.cart = cart;
+    // Constructor con parámetros
+    public CartItem(Product product, Cart cart, int quantity) {
         this.product = product;
+        this.cart = cart;
         this.quantity = quantity;
-        this.price = price;
     }
 
-    public long getCartItemId() {
-        return cartItemId;
+    // Getters y Setters
+    public Product getProduct() {
+        return product;
     }
 
-    public void setCartItemId(long cartItemId) {
-        this.cartItemId = cartItemId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Cart getCart() {
@@ -56,14 +50,6 @@ public class CartItem {
         this.cart = cart;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public int getQuantity() {
         return quantity;
     }
@@ -72,14 +58,8 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
-        return price;
+    // Método para calcular el precio total del CartItem
+    public double getTotalPrice() {
+        return product.getPrice() * quantity;
     }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    
-
 }

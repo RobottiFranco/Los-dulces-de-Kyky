@@ -17,13 +17,16 @@ public class Cart {
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> items = new ArrayList<>();
 
+    // Constructor por defecto
     public Cart() {
     }
 
+    // Constructor con parámetros
     public Cart(String sessionId) {
         this.sessionId = sessionId;
     }
 
+    // Getters y Setters
     public String getSessionId() {
         return sessionId;
     }
@@ -40,4 +43,21 @@ public class Cart {
         this.items = items;
     }
 
+    // Métodos de conveniencia para manejar items del carrito
+    public void addItem(CartItem item) {
+        this.items.add(item);
+    }
+
+    public void removeItem(CartItem item) {
+        this.items.remove(item);
+    }
+
+    public void clearItems() {
+        this.items.clear();
+    }
+
+    // Método para calcular el total del carrito
+    public double getTotalAmount() {
+        return items.stream().mapToDouble(CartItem::getTotalPrice).sum();
+    }
 }
